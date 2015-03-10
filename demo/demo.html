@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>源码分析</title>
+    <link rel="stylesheet" href="channel.css?date=2014011601" type="text/css" media="screen" />
+
+    <script type="text/javascript" src="../jquery.js"></script>
+
+</head>
+
+<body>
+    <div id="OSC_NavTop">
+        <div class="wp998">
+            <div id="OSC_Channels">
+                <ul>
+                    <li class="item"><a href="http://www.oschina.net/" class="home">首页</a>
+                    </li>
+                    <li class="item control_select"><a href="http://www.oschina.net/project" class="project">开源项目</a>
+
+                    </li>
+                    <li class="item control_select">
+                        <a href="http://www.oschina.net/question" class="question">讨论区</a>
+
+                    </li>
+                    <li class="item"><a href="http://www.oschina.net/code/list" class="code">代码</a>
+                    </li>
+                    <li class="item"><a href="http://www.oschina.net/blog" class="blog">博客</a>
+                    </li>
+                    <li class="item"><a href="http://www.oschina.net/translate" class="tran">翻译</a>
+                    </li>
+                    <li class="item"><a href="http://www.oschina.net/news" class="news">资讯</a>
+                    </li>
+                    <li class="item control_select">
+                        <a href="http://www.oschina.net/android" class="mobile">移动开发</a>
+
+                    </li>
+                    <li class="item t_job"><a href="http://www.oschina.net/job" class="job">招聘</a>
+                    </li>
+                    <li class="item control_select">
+                        <a href="http://city.oschina.net/" id="MyCities" title="城市圈">城市圈</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="OSC_Userbar">
+                当前访客身份：游客 [ <a href="http://www.oschina.net/home/login?goto_page=http%3A%2F%2Fwww.oschina.net%2Fp%2Farttemplate">登录</a> | <a href="http://www.oschina.net/home/reg">加入开源中国</a> ]
+            </div>
+            <div class="clear"></div>
+            <div></div>
+        </div>
+    </div>
+    <script>
+    var data = [2];
+    var elem = $('#OSC_NavTop');
+
+    elem = $("*:empty");
+    console.log(elem)
+        /*没有参数
+        elem.each(function(i,v){
+            console.log(i,v);
+
+        })
+        */
+
+    /*data是数组的时候，其值和回调的形参对应统一
+    elem.each(function(i,v){
+        console.log(i,v);
+    }, data)
+    */
+
+    var $bind = function(fn, context) {
+        var slice = Array.prototype.slice,
+            args = slice.call(arguments, 2);
+        return function() {
+            //console.log(arguments);
+            return fn.apply(context, args.concat(slice.call(arguments)));
+        }
+    }
+    var handler = function(x, y, z) {
+        console.log(x, y, z);
+    }
+    var argh = $bind(handler, undefined, 5, 10);
+    //console.log(argh)
+    $('#OSC_NavTop').bind('click', argh);
+
+    $('#OSC_NavTop').attr();
+    </script>
+
+    <script type="text/javascript">
+    document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E%3Cscript charset="utf-8" src="http://znsv.baidu.com/customer_search/api/js?sid=11030216835781268830') + '&plate_url=' + (encodeURIComponent(window.location.href)) + '&t=' + (Math.ceil(new Date() / 3600000)) + unescape('"%3E%3C/script%3E'));
+    </script>
+</body>
+
+</html>

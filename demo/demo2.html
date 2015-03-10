@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>jquery-demo</title>
+<script src="../jquery.js"></script>
+</head>
+<body>
+<ul id="nav">
+	<li><a href="http://www.baidu.com" target="_blank">baidu</a></li>
+	<li>2</li>
+	<li id="share_sina">3</li>
+	<li id="share_qq">4</li>
+</ul>
+
+<script type="text/javascript">
+//var text = $("li").text();
+
+/*
+function proxy(fn, proxy){
+
+	return  proxy;
+}
+var handler = function (){
+
+	console.log('回调',arguments);
+	~function(){console.log('参数内部',arguments);}();
+}
+var fn = handler;
+handler = proxy(fn, function(){
+
+	return fn.apply(this, arguments);
+})
+
+//console.log(handler);
+*/
+
+//$("<div>demo</div>").appendTo("#nav");
+//$("<div/>").appendTo("#nav");
+
+/*
+$('#nav li').bind('click',{a:1,b:2},function(e){
+	console.log(e.data.a);
+	console.log('li clicked');
+});
+*/
+
+/**/
+$('#nav li a').bind('click',function(e){
+	console.log('第1个处理函数'); 
+	//return false;
+	e.stopPropagation();
+	e.preventDefault();
+});
+
+$('#nav li a').bind('click',function(e){
+	console.log('第2个处理函数');
+});
+
+/*
+$('#nav li a').bind('mouseover',function(e){
+	console.log('hover第1个处理函数');
+});
+*/
+
+//$('#nav li a').unbind('click',function(){});
+
+//console.log($('#nav li a').data('address'));
+//$('#nav').bind('click',{a:1,b:2},fn);
+
+/*
+$('#nav').get(0).onclick = function(e){
+	console.log(e);
+	
+}*/
+
+//$v = $('#nav').data('username',1);
+//console.log($v);
+
+
+/*
+jQuery.extend({
+	add:function(a,b){return a+b;}
+
+})
+
+jQuery.fn.extend({
+	add:function(a,b){return a+b;}
+
+})
+*/
+var ops = {
+	type: "GET",
+	url:"callback2.php",
+
+	//dataType:"jsonp",
+	dataType:"json",
+	//dataType:"text",
+
+	//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+	//jsonp: "callback",
+
+	//回调函数参数
+    //jsonpCallback:"fn",
+
+    //callback:"fn",
+	data:{foo:"bar1"},
+	success:function(str){
+		/*
+		 如果dataType 是json
+		*/
+		console.log(str);
+		alert(str);
+	},
+	complete:function(){
+
+	}
+};
+
+
+$.ajax(ops);
+function fn(str){
+	//console.log(arguments.callee.caller)
+	console.log('回调2');
+	alert(str);
+}
+ 
+
+
+
+</script>
+
+ 
+</body>
+</html>
